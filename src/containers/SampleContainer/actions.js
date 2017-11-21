@@ -1,25 +1,23 @@
-import { SAMPLE_ACTION, ANOTHER_SAMPLE_ACTION } from './constants';
+import {
+  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED,
+} from './constants';
 
-export function sampleAction(payload) {
-  // console.log('A book has been selected ' + book.title);
+export function onOtpNumberChange(payload) {
   /**
-   * selectBook is an ActionCreator, it needs to return an action objecct
-   * the action object has a type and a payload
+   * action triggered when user changes his number in the otp form
    */
+  console.log(`otp number changed to ${payload}`);
   return {
-    type: SAMPLE_ACTION,
+    type: NUMBER_CHANGED,
     payload,
   };
 }
 
-export function anotherSampleAction(payload) {
-  // console.log('A book has been selected ' + book.title);
-  /**
-   * selectBook is an ActionCreator, it needs to return an action objecct
-   * the action object has a type and a payload
-   */
+export function onOtpNumberSubmit(payload) {
+  console.log(`otp number submitted with payload ${payload}`);
   return {
-    type: ANOTHER_SAMPLE_ACTION,
+    type: OTP_SUBMIT_REQUESTED,
     payload,
   };
 }
+

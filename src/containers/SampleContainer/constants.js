@@ -1,2 +1,4 @@
-export const SAMPLE_ACTION = 'sample_action';
-export const ANOTHER_SAMPLE_ACTION = 'another_sample_action';
+export const OTP_SUBMIT_REQUESTED = 'otp/OTP_SUBMIT_REQUESTED';
+export const OTP_SUBMIT_FAILED = 'otp/OTP_SUBMIT_FAILED';
+export const OTP_SUBMIT_SUCCESS = 'otp/OTP_SUBMIT_SUCCESS';
+export const NUMBER_CHANGED = 'otp/NUMBER_CHANGED';

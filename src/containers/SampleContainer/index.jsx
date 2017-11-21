@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { sampleAction } from './actions';
+import { onOtpNumberChange, onOtpNumberSubmit } from './actions';
+import Demo from '../../components/Demo';
 
 const SmartComponent = (props) => {
   console.log(props);
   return (
-    <div>
-      <h1>Smart Component</h1>
-    </div>
+    <Demo {...props} />
   );
 };
 
@@ -22,7 +20,7 @@ function mapStateToProps(state) {
    * Whatever is returned will be show up as props inside SmartComponent
    */
   return {
-    sample: state.sample,
+    number: state.sample && state.sample.partialMobileNumber,
   };
 }
 
@@ -32,12 +30,10 @@ function mapStateToProps(state) {
  * Anything return from function will be  received as props on the SmartComponent Container
  */
 function mapDispatchToProps(dispatch) {
-  /**
-   * Whenever selectBook is called, the result should be passed to all our readers
-   */
-  return bindActionCreators({
-    sampleAction,
-  }, dispatch);
+  return {
+    onOtpNumberChange: data => dispatch(onOtpNumberChange(data)),
+    onOtpNumberSubmit: data => dispatch(onOtpNumberSubmit(data)),
+  };
 }
 
 /**

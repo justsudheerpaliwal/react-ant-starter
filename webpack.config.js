@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/'),
@@ -30,14 +30,14 @@ module.exports = {
   },
   // PLUGINS BELOW REDUCE BUNDLE SIZE FOR PRODUCTION
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-    }), // minify
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: JSON.stringify('production'),
+    //   },
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: false,
+    // }), // minify
     new webpack.optimize.AggressiveMergingPlugin(), // Merging chunks
     new webpack.HotModuleReplacementPlugin(), // hot reload
     new webpack.NoEmitOnErrorsPlugin(), // better errors
