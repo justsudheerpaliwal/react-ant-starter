@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { sampleAction } from '../actions/sample_actions';
+import { sampleAction } from './actions';
 
 const SmartComponent = (props) => {
   console.log(props);

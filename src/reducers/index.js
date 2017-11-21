@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import SampleReducer from '../reducers/sample_reducer';
+import SampleReducer from '../containers/SampleContainer/reducers';
 
 const rootReducer = combineReducers({
   sample: SampleReducer,

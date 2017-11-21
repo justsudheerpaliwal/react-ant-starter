@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.3.0] - 2017-11-21
 ### Added
 - Hot Module Reloading
+- Scalable folder organization
+- Added SASS Loader
 - Favicon
-
 ### Changed
 - Nothing
 
