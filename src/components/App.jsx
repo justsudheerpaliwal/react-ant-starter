@@ -2,7 +2,9 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from '../reducers';
+import './App.css';
 import SmartComponent from '../containers/SmartComponent';
+import AntComponent from './AntComponent';
 // create a redux store
 const store = createStore(reducers);
 
@@ -17,7 +19,8 @@ const App = () => (
       </p>
       {/* import your components/containers here */}
       <SmartComponent />
-      <p className="text-warning">
+      <AntComponent />
+      <p className="text-warning test-name">
         Look at the <code className="text-danger">browser console</code> for props
       </p>
     </div>
