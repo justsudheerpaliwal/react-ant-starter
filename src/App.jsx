@@ -1,19 +1,22 @@
 import React from 'react';
-import SmartComponent from './containers/SampleContainer';
+import { Route, Switch } from 'react-router-dom';
+import TopLayout from './components/top-layout/top-layout';
+import LoginComponent from './containers/login';
+import DashboardComponent from './containers/dashboard';
+import OtpValidationComponent from './containers/otp-validation';
+
+function getRoutedComponent(Component) {
+  return () => (<TopLayout render={() => <Component />} />);
+}
 
 const App = () => (
   <div className="container text-center">
-    <br />
-    <h3 className="text-success">Hello from App</h3>
-    <br />
-    <p className="text-warning">
-      Edit the <code className="text-danger">src/containers/App</code> to change the content
-    </p>
-    {/* import your components/containers here */}
-    <SmartComponent />
-    <p className="text-warning">
-      Look at the <code className="text-danger">browser console</code> for props
-    </p>
+    <Switch>
+      <Route exact path="/" render={getRoutedComponent(OtpValidationComponent)} />
+      <Route exact path="/login" render={getRoutedComponent(LoginComponent)} />
+      <Route exact path="/verify-otp" render={getRoutedComponent(OtpValidationComponent)} />
+      <Route exact path="/dashboard" render={getRoutedComponent(DashboardComponent)} />
+    </Switch>
   </div>
 );
 

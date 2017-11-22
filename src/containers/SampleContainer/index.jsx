@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { onOtpNumberChange, onOtpNumberSubmit } from './actions';
-import Demo from '../../components/Demo';
+import TopLayout from '../../components/top-layout/top-layout';
 
 const SmartComponent = (props) => {
-  console.log(props);
   return (
-    <Demo {...props} />
+    <TopLayout {...props} />
   );
 };
 

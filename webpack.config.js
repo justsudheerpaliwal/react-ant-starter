@@ -46,6 +46,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+
   /**
    * When you are in the production branch, comment the following lines
    * of devtool so as to prevent throwing error while building the bundle for production
@@ -55,5 +56,8 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
     compress: true,
     port: 5000,
+    historyApiFallback: {
+      index: 'index.html',
+    },
   },
 };
