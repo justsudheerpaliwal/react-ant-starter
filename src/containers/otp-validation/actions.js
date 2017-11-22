@@ -1,12 +1,11 @@
 import {
-  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED,
+  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED, OTP_SUBMIT_FAILED, OTP_SUBMIT_SUCCESS,
 } from './constants';
 
 export function onOtpNumberChange(payload) {
   /**
    * action triggered when user changes his number in the otp form
    */
-  console.log(`otp number changed to ${payload}`);
   return {
     type: NUMBER_CHANGED,
     payload,
@@ -14,10 +13,23 @@ export function onOtpNumberChange(payload) {
 }
 
 export function onOtpNumberSubmit(payload) {
-  console.log(`otp number submitted with payload ${payload}`);
   return {
     type: OTP_SUBMIT_REQUESTED,
     payload,
   };
 }
+
+export function onNumberSubmitSuccess() {
+  return {
+    type: OTP_SUBMIT_SUCCESS,
+  };
+}
+
+export function onNumberSuccessFail() {
+  return {
+    type: OTP_SUBMIT_FAILED,
+  };
+}
+
+
 

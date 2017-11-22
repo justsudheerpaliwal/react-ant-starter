@@ -1,11 +1,15 @@
 import React from 'react';
-import { Input, Button } from 'antd';
+import { Button } from 'antd';
 
 const OtpValidation = props => (
   <div>
-    <Input placeholder="Enter your number" />
-    <Button type="primary">
-      Primary
+    <input 
+      type="text" 
+      placeholder="Enter your number" 
+      value={props.number} 
+      onChange={event => props.onOtpNumberChange(event.target.value)} />
+    <Button type="primary" onClick={() => props.onOtpNumberSubmit(props.number)}>
+      Submit
     </Button>
   </div>
 );

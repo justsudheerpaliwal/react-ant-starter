@@ -1,5 +1,5 @@
 import {
-  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED,
+  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED, OTP_SUBMIT_FAILED, OTP_SUBMIT_SUCCESS,
 } from './constants';
 
 /**
@@ -25,6 +25,16 @@ export default function (state = null, action) {
       return {
         ...state,
         partialMobileNumber: action.payload,
+      };
+    case OTP_SUBMIT_FAILED:
+      return {
+        ...state,
+        numberSubmitSuccess: false,
+      };
+    case OTP_SUBMIT_SUCCESS:
+      return {
+        ...state,
+        numberSubmitSuccess: true,
       };
     default: return state;
   }
