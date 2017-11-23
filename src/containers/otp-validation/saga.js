@@ -4,7 +4,7 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects';
 import {
-  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED, OTP_SUBMIT_FAILED, OTP_SUBMIT_SUCCESS,
+  OTP_SUBMIT_REQUESTED,
 } from './constants';
 
 import { onNumberSubmitSuccess, onNumberSuccessFail } from './actions';
@@ -18,10 +18,9 @@ function request(username) {
  * get github data to mock a request
  */
 export function* getMobileNumber(action) {
-
   try {
     // Call our request helper (see 'utils/request')
-    const repos = yield call(request, action.payload);
+    yield call(request, action.payload);
     yield put(onNumberSubmitSuccess());
   } catch (err) {
     yield put(onNumberSuccessFail());

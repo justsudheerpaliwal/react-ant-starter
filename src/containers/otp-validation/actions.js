@@ -30,6 +30,3 @@ export function onNumberSuccessFail() {
     type: OTP_SUBMIT_FAILED,
   };
 }
-
-
-
