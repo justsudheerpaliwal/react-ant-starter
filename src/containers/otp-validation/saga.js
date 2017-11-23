@@ -4,14 +4,26 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects';
 import {
-  OTP_SUBMIT_REQUESTED,
+  MOBILE_NUMBER_SUBMIT_REQUESTED,
 } from './constants';
+import { API_BASE_URL_STAGING } from '../../constants';
 
 import { onNumberSubmitSuccess, onNumberSuccessFail } from './actions';
+import request from '../../utils/request';
 
-function request(username) {
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
-  return fetch(requestURL);
+function submitNumber(number) {
+  const requestURL = `${API_BASE_URL_STAGING}/users/check`;
+  const options = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: `{
+      "mobile": ${number},
+      "countryCode": 91
+    }`,
+  };
+  return request(requestURL, options);
 }
 
 /**
@@ -20,7 +32,7 @@ function request(username) {
 export function* getMobileNumber(action) {
   try {
     // Call our request helper (see 'utils/request')
-    yield call(request, action.payload);
+    yield call(submitNumber, action.payload);
     yield put(onNumberSubmitSuccess());
   } catch (err) {
     yield put(onNumberSuccessFail());
@@ -31,5 +43,5 @@ export function* getMobileNumber(action) {
  * Root saga manages watcher lifecycle
  */
 export default function* submitMobileNumberWatcher() {
-  yield takeLatest(OTP_SUBMIT_REQUESTED, getMobileNumber);
+  yield takeLatest(MOBILE_NUMBER_SUBMIT_REQUESTED, getMobileNumber);
 }

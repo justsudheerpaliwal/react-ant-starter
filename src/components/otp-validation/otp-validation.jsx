@@ -1,17 +1,17 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Field, reduxForm } from 'redux-form';
 
 const OtpValidation = props => (
-  <div>
-    <input 
-      type="text" 
-      placeholder="Enter your number" 
-      value={props.number} 
-      onChange={event => props.onOtpNumberChange(event.target.value)} />
-    <Button type="primary" onClick={() => props.onOtpNumberSubmit(props.number)}>
-      Submit
-    </Button>
-  </div>
+  <form onSubmit={props.handleSubmit}>
+    <div>
+      <label htmlFor="mobileNumber">First Name</label>
+      <Field name="mobileNumber" component="input" type="text" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
 );
 
-export default OtpValidation;
+export default reduxForm({
+  // a unique name for the form
+  form: 'mobileNumber',
+})(OtpValidation);

@@ -1,8 +1,8 @@
 import {
-  OTP_SUBMIT_REQUESTED, NUMBER_CHANGED, OTP_SUBMIT_FAILED, OTP_SUBMIT_SUCCESS,
+  MOBILE_NUMBER_SUBMIT_REQUESTED, NUMBER_CHANGED, MOBILE_NUMBER_SUBMIT_FAILED, MOBILE_NUMBER_SUBMIT_SUCCESS,
 } from './constants';
 
-export function onOtpNumberChange(payload) {
+export function onMobileNumberChange(payload) {
   /**
    * action triggered when user changes his number in the otp form
    */
@@ -12,21 +12,21 @@ export function onOtpNumberChange(payload) {
   };
 }
 
-export function onOtpNumberSubmit(payload) {
+export function onMobileNumberSubmit(payload) {
   return {
-    type: OTP_SUBMIT_REQUESTED,
+    type: MOBILE_NUMBER_SUBMIT_REQUESTED,
     payload,
   };
 }
 
 export function onNumberSubmitSuccess() {
   return {
-    type: OTP_SUBMIT_SUCCESS,
+    type: MOBILE_NUMBER_SUBMIT_SUCCESS,
   };
 }
 
 export function onNumberSuccessFail() {
   return {
-    type: OTP_SUBMIT_FAILED,
+    type: MOBILE_NUMBER_SUBMIT_FAILED,
   };
 }

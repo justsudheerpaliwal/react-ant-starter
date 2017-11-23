@@ -1,10 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { onOtpNumberChange, onOtpNumberSubmit } from './actions';
+import { onMobileNumberChange, onMobileNumberSubmit } from './actions';
 import OtpValidation from '../../components/otp-validation/otp-validation';
 
-const OtpValidationContainer = props =>
-  <OtpValidation {...props} />;
+class OtpValidationContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(value) {
+    this.props.onMobileNumberSubmit(value.mobileNumber);
+  }
+   
+  render() {
+    return <OtpValidation onSubmit={this.onSubmit} />;
+  }
+}
 
 /**
  *
@@ -27,8 +39,8 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
   return {
-    onOtpNumberChange: data => dispatch(onOtpNumberChange(data)),
-    onOtpNumberSubmit: data => dispatch(onOtpNumberSubmit(data)),
+    onMobileNumberChange: data => dispatch(onMobileNumberChange(data)),
+    onMobileNumberSubmit: data => dispatch(onMobileNumberSubmit(data)),
   };
 }
 
