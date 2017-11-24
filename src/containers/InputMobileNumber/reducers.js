@@ -1,5 +1,9 @@
 import {
-  MOBILE_NUMBER_SUBMIT_REQUESTED, MOBILE_NUMBER_SUBMIT_FAILED, MOBILE_NUMBER_SUBMIT_SUCCESS,
+  MOBILE_NUMBER_SUBMIT_REQUESTED,
+  MOBILE_NUMBER_SUBMIT_FAILED,
+  MOBILE_NUMBER_SUBMIT_SUCCESS,
+  PROCEED_TO_OTP_VERIFICATION,
+
 } from './constants';
 
 /**
@@ -30,6 +34,11 @@ export default function (state = null, action) {
       return {
         ...state,
         mobileNumber: action.payload,
+      };
+    case PROCEED_TO_OTP_VERIFICATION:
+      return {
+        ...state,
+        proceedToOtpVerification: true,
       };
     default: return state;
   }

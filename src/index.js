@@ -2,16 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 import App from './App';
-import rootSaga from './saga';
+import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
+const history = createHistory();
+
 const middlewares = [
   sagaMiddleware,
+  routerMiddleware(history),
 ];
 
 const enhancers = [
@@ -40,11 +44,12 @@ const store = createStore(
 
 // Extensions
 store.runSaga = sagaMiddleware.run(rootSaga);
+
 const RenderApp = () => (
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>
 );
 

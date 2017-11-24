@@ -14,10 +14,10 @@ export default (props) => {
           mode="horizontal"
           style={{ lineHeight: '64px' }}
         >
-          <Menu.Item key="1"><Link to='/login'>nav 1</Link></Menu.Item>
-          <Menu.Item key="1"><Link to='/verify-otp'>nav 1</Link></Menu.Item>
-          <Menu.Item key="1"><Link to='/dashboard'>nav 1</Link></Menu.Item>
-          <Menu.Item key="1"><Link to='/verify-otp'>Logout</Link></Menu.Item>
+          <Menu.Item key="validateOtp"><Link to='/validate-otp'>Validate OTP</Link></Menu.Item>
+          <Menu.Item key="InputNumber"><Link to='/input-number'>Input NUmber</Link></Menu.Item>
+          <Menu.Item key="DashBoard"><Link to='/dashboard'>DashBoard</Link></Menu.Item>
+          <Menu.Item key="Logout"><Link to='/logout'>Logout</Link></Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px', marginTop: 64 }}>

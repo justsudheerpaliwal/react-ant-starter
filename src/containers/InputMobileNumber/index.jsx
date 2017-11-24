@@ -1,20 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { onMobileNumberChange, onMobileNumberSubmit } from './actions';
-import OtpValidation from '../../components/otp-validation/otp-validation';
+import InputMobileNumber from '../../components/InputMobileNumber';
 
-class OtpValidationContainer extends React.Component {
+class InputMobileNumberContainer extends React.Component {
   constructor(props) {
     super(props);
+    if (props.proceedToOtpVerification) {
+      props.history.replace('/validate-otp');
+    }
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(value) {
     this.props.onMobileNumberSubmit(value.mobileNumber);
   }
-   
+
   render() {
-    return <OtpValidation onSubmit={this.onSubmit} />;
+    return (
+      <InputMobileNumber
+        onSubmit={this.onSubmit}
+        mobileNumber={this.props.mobileNumber}
+      />
+    );
   }
 }
 
@@ -28,7 +37,7 @@ function mapStateToProps(state) {
    * Whatever is returned will be show up as props inside SmartComponent
    */
   return {
-    number: state.sample && state.sample.partialMobileNumber,
+    proceedToOtpVerification: state.mobileNumber && state.mobileNumber.proceedToOtpVerification,
   };
 }
 
@@ -48,5 +57,5 @@ function mapDispatchToProps(dispatch) {
  * connect() promotes the simple component SmartComponent into a container or smart component
  * It makes all the actions and states from Redux store as a prop
  */
-export default connect(mapStateToProps, mapDispatchToProps)(OtpValidationContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InputMobileNumberContainer));
 
