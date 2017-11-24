@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { onMobileNumberChange, onMobileNumberSubmit } from './actions';
+import { onMobileNumberSubmit } from './actions';
 import InputMobileNumber from '../../components/InputMobileNumber';
 
 class InputMobileNumberContainer extends React.Component {
@@ -48,7 +48,6 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
   return {
-    onMobileNumberChange: data => dispatch(onMobileNumberChange(data)),
     onMobileNumberSubmit: data => dispatch(onMobileNumberSubmit(data)),
   };
 }
