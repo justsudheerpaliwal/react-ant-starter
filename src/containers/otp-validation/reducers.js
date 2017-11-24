@@ -1,5 +1,5 @@
 import {
-  MOBILE_NUMBER_SUBMIT_REQUESTED, NUMBER_CHANGED, MOBILE_NUMBER_SUBMIT_FAILED, MOBILE_NUMBER_SUBMIT_SUCCESS,
+  MOBILE_NUMBER_SUBMIT_REQUESTED, MOBILE_NUMBER_SUBMIT_FAILED, MOBILE_NUMBER_SUBMIT_SUCCESS,
 } from './constants';
 
 /**
@@ -21,11 +21,6 @@ export default function (state = null, action) {
         ...state,
         mobileNumber: action.payload,
       };
-    case NUMBER_CHANGED:
-      return {
-        ...state,
-        partialMobileNumber: action.payload,
-      };
     case MOBILE_NUMBER_SUBMIT_FAILED:
       return {
         ...state,
@@ -34,7 +29,7 @@ export default function (state = null, action) {
     case MOBILE_NUMBER_SUBMIT_SUCCESS:
       return {
         ...state,
-        numberSubmitSuccess: true,
+        mobileNumber: action.payload,
       };
     default: return state;
   }
