@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { onMobileNumberSubmit } from './actions';
-import InputMobileNumber from '../../components/InputMobileNumber';
+import InputMobileNumberComponent from '../../components/InputMobileNumber';
 
-class InputMobileNumberContainer extends React.Component {
+class InputMobileNumber extends React.Component {
   constructor(props) {
     super(props);
     if (props.proceedToOtpVerification) {
@@ -19,7 +19,7 @@ class InputMobileNumberContainer extends React.Component {
 
   render() {
     return (
-      <InputMobileNumber
+      <InputMobileNumberComponent
         onSubmit={this.onSubmit}
         mobileNumber={this.props.mobileNumber}
       />
@@ -56,5 +56,5 @@ function mapDispatchToProps(dispatch) {
  * connect() promotes the simple component SmartComponent into a container or smart component
  * It makes all the actions and states from Redux store as a prop
  */
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InputMobileNumberContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InputMobileNumber));
 
