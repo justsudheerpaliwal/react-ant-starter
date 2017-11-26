@@ -1,13 +1,14 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import { OTP_REQUESTED, OTP_VALIDATION_REQUESTED } from './constants';
-import { API_BASE_URL_DEV } from '../../constants';
+import { API_BASE_URL_DEV, ACCESS_TOKEN } from '../../constants';
 import {
   onOtpRequestSuccess,
   onOtpRequestFailure,
   onOtpValidationSuccess,
   onOtpValidationFailure,
   onLoginFailure,
-  onLoginSuccess
+  onLoginSuccess,
 } from './actions';
 import request from '../../utils/request';
 
@@ -69,6 +70,10 @@ function* requestOtp(action) {
   }
 }
 
+function setAuthToken(token) {
+  localStorage.setItem(ACCESS_TOKEN, token);
+}
+
 function* manageLogin(data, actionPayload) {
   const loginPayload = {
     mobileNumber: actionPayload.mobileNumber,
@@ -77,9 +82,11 @@ function* manageLogin(data, actionPayload) {
   };
   try {
     const loginData = yield call(makeLoginRequest, loginPayload);
+    yield call(setAuthToken, loginData.data.token);
     yield put(onLoginSuccess(loginData.data.token));
+    yield put(push('/dashboard'));
   } catch (err) {
-    console.log('Something went wrong');
+    console.log(err);
     yield put(onLoginFailure(err));
   }
 }

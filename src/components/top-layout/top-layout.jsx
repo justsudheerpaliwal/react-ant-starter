@@ -15,7 +15,7 @@ export default (props) => {
           style={{ lineHeight: '64px' }}
         >
           <Menu.Item key="validateOtp"><Link to='/validate-otp'>Validate OTP</Link></Menu.Item>
-          <Menu.Item key="InputNumber"><Link to='/input-number'>Input NUmber</Link></Menu.Item>
+          <Menu.Item key="InputNumber"><Link to='/input-number'>Input Number</Link></Menu.Item>
           <Menu.Item key="DashBoard"><Link to='/dashboard'>DashBoard</Link></Menu.Item>
           <Menu.Item key="Logout"><Link to='/logout'>Logout</Link></Menu.Item>
         </Menu>

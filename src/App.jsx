@@ -4,6 +4,7 @@ import TopLayout from './components/top-layout/top-layout';
 import ValidateOtp from './containers/ValidateOtp';
 import DashboardComponent from './containers/dashboard';
 import InputMobileNumber from './containers/InputMobileNumber';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 function getRoutedComponent(Component) {
   return () => (<TopLayout render={() => <Component />} />);
@@ -11,11 +12,10 @@ function getRoutedComponent(Component) {
 
 const App = () => (
   <Switch>
-    <Route exact path="/" render={getRoutedComponent(InputMobileNumber)} />
-    <Route exact path="/validate-otp" render={getRoutedComponent(ValidateOtp)} />
-    <Route exact path="/input-number" render={getRoutedComponent(InputMobileNumber)} />
-    <Route exact path="/dashboard" render={getRoutedComponent(DashboardComponent)} />
-    <Route exact path="/logout" render={getRoutedComponent(InputMobileNumber)} />
+    <Route exact path="/" component={getRoutedComponent(InputMobileNumber)} />
+    <Route exact path="/validate-otp" component={getRoutedComponent(ValidateOtp)} />
+    <Route exact path="/input-number" component={getRoutedComponent(InputMobileNumber)} />
+    <ProtectedRoute exact path="/dashboard" component={getRoutedComponent(DashboardComponent)} />
   </Switch>
 );
 
