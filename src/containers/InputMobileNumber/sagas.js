@@ -35,7 +35,11 @@ export function* getMobileNumber(action) {
   try {
     // Call our request helper (see 'utils/request')
     const data = yield call(submitNumber, action.payload);
-    yield put(onNumberSubmitSuccess(action.payload));
+    const successPayload = {
+      type: data.data.type,
+      mobileNumber: action.payload,
+    };
+    yield put(onNumberSubmitSuccess(successPayload));
     yield call(processNumberSubmitSuccess, data, action.payload);
   } catch (err) {
     console.log('on 404 show go to register and handle other errors accordingly');

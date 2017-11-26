@@ -5,6 +5,8 @@ import {
   OTP_VALIDATION_REQUESTED,
   OTP_VALIDATION_SUCCESS,
   OTP_VALIDATION_FAILED,
+  LOGIN_FAILED,
+  LOGIN_SUCCESS,
 } from './constants';
 
 const initialState = {
@@ -14,6 +16,8 @@ const initialState = {
   otpValidationRequested: false,
   otpValidationSuccess: false,
   otpValidationError: null,
+  accessToken: null,
+  loginError: null,
 };
 
 export default function (state = initialState, action) {
@@ -56,6 +60,18 @@ export default function (state = initialState, action) {
         otpValidationRequested: false,
         otpValidationSuccess: false,
         otpValidationError: action.payload,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        accessToken: action.payload,
+        loginError: null,
+      };
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        accessToken: null,
+        loginError: action.payload,
       };
     default:
       return state;

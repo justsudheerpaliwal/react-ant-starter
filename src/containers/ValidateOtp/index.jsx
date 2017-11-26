@@ -28,6 +28,7 @@ class ValidateOtp extends React.Component {
     const payload = {
       otp: value.otp,
       mobileNumber: this.props.mobileNumber,
+      type: this.props.type,
     };
     this.props.onOtpValidationRequested(payload);
   }
@@ -57,15 +58,17 @@ class ValidateOtp extends React.Component {
  * @param {Object} state
  */
 function mapStateToProps(state) {
+  const { otpValidation } = state;
   return {
-    otpRequested: state.otpValidation && state.otpValidation.otpRequested,
-    otpRequestSuccess: state.otpValidation && state.otpValidation.otpRequestSuccess,
-    otpRequestError: state.otpValidation && state.otpValidation.otpRequestError,
+    otpRequested: otpValidation && otpValidation.otpRequested,
+    otpRequestSuccess: otpValidation && otpValidation.otpRequestSuccess,
+    otpRequestError: otpValidation && otpValidation.otpRequestError,
     proceedToOtpVerification: state.mobileNumber && state.mobileNumber.proceedToOtpVerification,
     mobileNumber: state.mobileNumber && state.mobileNumber.mobileNumber,
-    otpValidationRequested: state.otpValidation && state.otpValidation.otpValidationRequested,
-    otpValidationSuccess: state.otpValidation && state.otpValidation.otpValidationSuccess,
-    otpValidationError: state.otpValidation && state.otpValidation.otpValidationError,
+    type: state.mobileNumber && state.mobileNumber.type,
+    otpValidationRequested: otpValidation && otpValidation.otpValidationRequested,
+    otpValidationSuccess: otpValidation && otpValidation.otpValidationSuccess,
+    otpValidationError: otpValidation && otpValidation.otpValidationError,
   };
 }
 

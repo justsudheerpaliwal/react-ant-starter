@@ -5,6 +5,8 @@ import {
   OTP_VALIDATION_REQUESTED,
   OTP_VALIDATION_SUCCESS,
   OTP_VALIDATION_FAILED,
+  LOGIN_FAILED,
+  LOGIN_SUCCESS,
 } from './constants';
 
 export function onOtpRequest(payload) {
@@ -43,6 +45,20 @@ export function onOtpValidationSuccess(payload) {
 export function onOtpValidationFailure(payload) {
   return {
     type: OTP_VALIDATION_FAILED,
+    payload,
+  };
+}
+
+export function onLoginSuccess(payload) {
+  return {
+    type: LOGIN_SUCCESS,
+    payload,
+  };
+}
+
+export function onLoginFailure(payload) {
+  return {
+    type: LOGIN_FAILED,
     payload,
   };
 }

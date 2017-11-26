@@ -6,6 +6,8 @@ import {
   onOtpRequestFailure,
   onOtpValidationSuccess,
   onOtpValidationFailure,
+  onLoginFailure,
+  onLoginSuccess
 } from './actions';
 import request from '../../utils/request';
 
@@ -40,6 +42,23 @@ function makeValidateOtpRequest(otpData) {
   return request(requestURL, options);
 }
 
+function makeLoginRequest(loginInfo) {
+  const requestUrl = `${API_BASE_URL_DEV}/users/login`;
+  const options = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: `{
+      "type":${loginInfo.type},
+      "mobile":${loginInfo.mobileNumber},
+      "countryCode":91,
+      "otpToken":"${loginInfo.otpToken}"
+    }`,
+  };
+  return request(requestUrl, options);
+}
+
 function* requestOtp(action) {
   try {
     yield call(makeOtpRequest, action.payload);
@@ -47,6 +66,21 @@ function* requestOtp(action) {
   } catch (err) {
     console.log('something went wrong');
     yield put(onOtpRequestFailure());
+  }
+}
+
+function* manageLogin(data, actionPayload) {
+  const loginPayload = {
+    mobileNumber: actionPayload.mobileNumber,
+    type: actionPayload.type,
+    otpToken: data.data.otpToken,
+  };
+  try {
+    const loginData = yield call(makeLoginRequest, loginPayload);
+    yield put(onLoginSuccess(loginData.data.token));
+  } catch (err) {
+    console.log('Something went wrong');
+    yield put(onLoginFailure(err));
   }
 }
 
@@ -58,6 +92,7 @@ function* validateOtp(action) {
   try {
     const data = yield call(makeValidateOtpRequest, action.payload);
     yield put(onOtpValidationSuccess(data));
+    yield call(manageLogin, data, action.payload);
   } catch (err) {
     console.log('something went wrong');
     yield put(onOtpValidationFailure(err));

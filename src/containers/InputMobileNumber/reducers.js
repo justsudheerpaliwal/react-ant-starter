@@ -33,7 +33,8 @@ export default function (state = null, action) {
     case MOBILE_NUMBER_SUBMIT_SUCCESS:
       return {
         ...state,
-        mobileNumber: action.payload,
+        mobileNumber: action.payload.mobileNumber,
+        type: action.payload.type,
       };
     case PROCEED_TO_OTP_VERIFICATION:
       return {
