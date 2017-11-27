@@ -14,6 +14,12 @@ const sagaMiddleware = createSagaMiddleware();
 
 const history = createHistory();
 
+if (history.location && history.location.state && history.location.state.from) {
+  const state = { ...history.location.state };
+  delete state.from;
+  history.replace({ ...history.location, state });
+}
+
 const middlewares = [
   sagaMiddleware,
   routerMiddleware(history),
