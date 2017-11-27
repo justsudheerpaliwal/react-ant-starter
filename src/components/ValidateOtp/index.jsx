@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Grid, Button, Form } from 'semantic-ui-react';
+import CustomInput from '../FormWrappers/CustomInput';
 
 class ValidateOtp extends React.Component {
   constructor(props) {
@@ -18,14 +20,23 @@ class ValidateOtp extends React.Component {
     }
   }
   render() {
+    const { handleSubmit, submitting, invalid, requestOtp} = this.props;
     return (
-      <form onSubmit={this.props.handleSubmit}>
-        <Field name="otp" component="input" type="text" />
-        <button type="button" onClick={this.props.requestOtp}> Resend OTP </button>
-        <button type="submit" disabled={this.requestingOtp || this.verifyingOtp} >
-          {this.buttonText}
-        </button>
-      </form>
+      <Grid verticalAlign='middle' centered>
+        <Grid.Column>
+          <Form onSubmit={handleSubmit} loading={submitting}>
+            <Field
+              component={CustomInput} name="otp"
+              type="text" placeholder="Enter OTP"
+              label="Enter OTP"
+            />
+            <Button style={{ marginTop: '1em' }} disabled={this.requestingOtp || invalid || submitting} primary type='submit'>
+              {this.buttonText}
+            </Button>
+            <Button type="button" onClick={this.props.requestOtp} disabled={this.requestingOtp || submitting}> Resend OTP </Button>
+          </Form>
+        </Grid.Column>
+      </Grid>
     );
   }
 }

@@ -38,6 +38,7 @@ class ValidateOtp extends React.Component {
   }
 
   render() {
+    console.log(this.props.location);
     return (
       <VaidateOtpComponent
         requestOtp={this.requestOtp}

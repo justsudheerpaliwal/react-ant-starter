@@ -1,25 +1,20 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Grid, Button, Form } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import CustomInput from '../FormWrappers/CustomInput';
 import './index.css';
 
 const OtpValidation = (props) => {
-  console.log(props);
   const { handleSubmit, submitting, invalid } = props;
   return (
-    <Grid verticalAlign='middle' centered>
-      <Grid.Column>
-        <Form onSubmit={handleSubmit} loading={submitting}>
-          <Field
-            component={CustomInput} name="mobileNumber"
-            type="text" placeholder="Your mobile number"
-            label="Enter your Mobile Number"
-          />
-          <Button style={{marginTop: '1em'}} disabled={invalid || submitting} primary type='submit'>Submit</Button>
-        </Form>
-      </Grid.Column>
-    </Grid>
+    <Form onSubmit={handleSubmit} loading={submitting}>
+      <Field
+        component={CustomInput} name="mobileNumber"
+        type="text" placeholder="Your mobile number"
+        label="Enter your Mobile Number"
+      />
+      <Button style={{ marginTop: '1em' }} disabled={invalid || submitting} primary type='submit'>Submit</Button>
+    </Form>
   );
 };
 
