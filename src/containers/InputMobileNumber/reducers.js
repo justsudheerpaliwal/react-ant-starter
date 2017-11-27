@@ -1,6 +1,5 @@
 import {
   MOBILE_NUMBER_SUBMIT_REQUESTED,
-  MOBILE_NUMBER_SUBMIT_FAILED,
   MOBILE_NUMBER_SUBMIT_SUCCESS,
   PROCEED_TO_OTP_VERIFICATION,
 
@@ -24,11 +23,6 @@ export default function (state = null, action) {
       return {
         ...state,
         mobileNumber: action.payload,
-      };
-    case MOBILE_NUMBER_SUBMIT_FAILED:
-      return {
-        ...state,
-        numberSubmitSuccess: false,
       };
     case MOBILE_NUMBER_SUBMIT_SUCCESS:
       return {

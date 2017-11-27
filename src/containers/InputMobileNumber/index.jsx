@@ -7,14 +7,18 @@ import InputMobileNumberComponent from '../../components/InputMobileNumber';
 class InputMobileNumber extends React.Component {
   constructor(props) {
     super(props);
-    if (props.proceedToOtpVerification) {
-      props.history.replace('/validate-otp');
-    }
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(value) {
-    this.props.onMobileNumberSubmit(value.mobileNumber);
+    return new Promise((resolve, reject) => {
+      const payload = {
+        resolve,
+        reject,
+        mobileNumber: value.mobileNumber,
+      };
+      this.props.onMobileNumberSubmit(payload);
+    });
   }
 
   render() {
@@ -56,5 +60,5 @@ function mapDispatchToProps(dispatch) {
  * connect() promotes the simple component SmartComponent into a container or smart component
  * It makes all the actions and states from Redux store as a prop
  */
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InputMobileNumber));
+export default connect(mapStateToProps, mapDispatchToProps)(InputMobileNumber);
 

@@ -16,6 +16,7 @@
     "antd": "^2.13.10",
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
+    "file-loader": "^1.1.5",
     "history": "^4.7.2",
     "prop-types": "^15.5.10",
     "react": "^16.1.1",
@@ -28,6 +29,9 @@
     "redux-promise": "^0.5.3",
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.77.0",
+    "url-loader": "^0.6.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

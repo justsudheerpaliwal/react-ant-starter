@@ -4,7 +4,7 @@ import {
   MOBILE_NUMBER_SUBMIT_REQUESTED,
 } from './constants';
 import { API_BASE_URL_DEV } from '../../constants';
-import { onNumberSubmitSuccess, onNumberSuccessFail, proceedToOtpVerification } from './actions';
+import { proceedToOtpVerification, onNumberSubmitSuccess } from './actions';
 import request from '../../utils/request';
 
 function submitNumber(number) {
@@ -34,16 +34,17 @@ function* processNumberSubmitSuccess(data) {
 export function* getMobileNumber(action) {
   try {
     // Call our request helper (see 'utils/request')
-    const data = yield call(submitNumber, action.payload);
+    const data = yield call(submitNumber, action.payload.mobileNumber);
     const successPayload = {
       type: data.data.type,
-      mobileNumber: action.payload,
+      mobileNumber: action.payload.mobileNumber,
     };
     yield put(onNumberSubmitSuccess(successPayload));
+    yield call(action.payload.resolve);
     yield call(processNumberSubmitSuccess, data, action.payload);
   } catch (err) {
     console.log('on 404 show go to register and handle other errors accordingly');
-    yield put(onNumberSuccessFail());
+    yield call(action.payload.reject, err);
   }
 }
 

@@ -5,18 +5,21 @@ import ValidateOtp from './containers/ValidateOtp';
 import DashboardComponent from './containers/dashboard';
 import InputMobileNumber from './containers/InputMobileNumber';
 import ProtectedRoute from './utils/ProtectedRoute';
+import { Grid } from 'semantic-ui-react';
 
 function getRoutedComponent(Component) {
   return () => (<TopLayout render={() => <Component />} />);
 }
 
 const App = () => (
-  <Switch>
-    <Route exact path="/" component={getRoutedComponent(InputMobileNumber)} />
-    <Route exact path="/validate-otp" component={getRoutedComponent(ValidateOtp)} />
-    <Route exact path="/input-number" component={getRoutedComponent(InputMobileNumber)} />
-    <ProtectedRoute exact path="/dashboard" component={getRoutedComponent(DashboardComponent)} />
-  </Switch>
+  <Grid verticalAlign='middle' centered>
+    <Switch>
+      <Route exact path="/" component={InputMobileNumber} />
+      <Route exact path="/validate-otp" component={getRoutedComponent(ValidateOtp)} />
+      <Route exact path="/input-number" component={InputMobileNumber} />
+      <ProtectedRoute exact path="/dashboard" component={getRoutedComponent(DashboardComponent)} />
+    </Switch>
+  </Grid>
 );
 
 export default App;
