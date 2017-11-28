@@ -6,6 +6,7 @@ import {
   onOtpValidationRequested,
 } from './actions';
 import VaidateOtpComponent from '../../components/ValidateOtp';
+import { ACCESS_TOKEN } from '../../constants';
 
 class ValidateOtp extends React.Component {
 
@@ -16,6 +17,13 @@ class ValidateOtp extends React.Component {
   }
 
   componentDidMount() {
+    const isAuthenticated = localStorage.getItem(ACCESS_TOKEN);
+    if (isAuthenticated) {
+      this.props.history.replace({
+        pathname: '/dashboard',
+      });
+    }
+
     if (!this.props.proceedToOtpVerification) {
       this.props.history.replace('/input-number');
     } else {

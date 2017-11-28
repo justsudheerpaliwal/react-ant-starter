@@ -8,7 +8,7 @@ function clearLocalStorage() {
 
 function* performLogout() {
   yield call(clearLocalStorage);
-  yield put(push('/'));
+  yield put(push('/input-number'));
 }
 
 export default function* logout() {

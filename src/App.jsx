@@ -12,7 +12,7 @@ function getRoutedComponent(Component) {
 
 const App = () => (
   <Switch>
-    <Route exact path="/" component={InputMobileNumber} />
+    <ProtectedRoute exact path="/" component={getRoutedComponent(DashboardComponent)} />
     <Route exact path="/validate-otp" component={ValidateOtp} />
     <Route exact path="/input-number" component={InputMobileNumber} />
     <ProtectedRoute exact path="/dashboard" component={getRoutedComponent(DashboardComponent)} />
@@ -20,4 +20,3 @@ const App = () => (
 );
 
 export default App;
-

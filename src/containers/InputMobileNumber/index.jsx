@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { onMobileNumberSubmit } from './actions';
 import InputMobileNumberComponent from '../../components/InputMobileNumber';
 import { Message, Grid } from 'semantic-ui-react';
+import { ACCESS_TOKEN } from '../../constants';
 
 class InputMobileNumber extends React.Component {
   constructor(props) {
@@ -11,12 +12,14 @@ class InputMobileNumber extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.history.replace({
-  //     pathname: this.props.location.pathname,
-  //     state: {},
-  //   });
-  // }
+  componentDidMount() {
+    const isAuthenticated = localStorage.getItem(ACCESS_TOKEN);
+    if (isAuthenticated) {
+      this.props.history.replace({
+        pathname: '/dashboard',
+      });
+    }
+  }
 
   onSubmit(value) {
     return new Promise((resolve, reject) => {
@@ -86,5 +89,5 @@ function mapDispatchToProps(dispatch) {
  * connect() promotes the simple component SmartComponent into a container or smart component
  * It makes all the actions and states from Redux store as a prop
  */
-export default connect(mapStateToProps, mapDispatchToProps)(InputMobileNumber);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InputMobileNumber));
 
