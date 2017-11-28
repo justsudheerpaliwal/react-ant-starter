@@ -32,7 +32,6 @@ class ValidateOtp extends React.Component {
   }
 
   onSubmitOtp(value) {
-    console.log('inside onSubmitOtp');
     const payload = {
       otp: value.otp,
       mobileNumber: this.props.mobileNumber,
@@ -46,7 +45,6 @@ class ValidateOtp extends React.Component {
   }
 
   render() {
-    console.log(this.props.location);
     return (
       <VaidateOtpComponent
         requestOtp={this.requestOtp}
